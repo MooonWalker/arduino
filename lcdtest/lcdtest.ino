@@ -32,7 +32,7 @@ uint8_t buttons;
 
 void setup() 
 {
-	// Debugging output
+	// Debugging outputt
 	//Serial.begin(9600);
 	// set up the LCD's number of columns and rows:
 	lcd.begin(20, 4);	
@@ -47,7 +47,7 @@ void setup()
 	time = millis() - time;
 	//Serial.print("Took "); Serial.print(time); Serial.println(" ms");
 	lcd.setBacklight(RED);
-	
+	//lcd.blink();
 	//Catch the external interrupt from the button input
 	attachInterrupt(1,ISR_Button,FALLING);
 }

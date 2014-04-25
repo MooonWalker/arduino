@@ -81,7 +81,6 @@ public:
 	void disableButtonInterrupt(); //Added to default library
 
   void home();
-
   void noDisplay();
   void display();
   void noBlink();
