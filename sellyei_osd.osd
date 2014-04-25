@@ -1,0 +1,74 @@
+Panel 1
+Pitch	23	11	False
+Roll	12	1	False
+Battery A	20	14	True
+Visible Sats	1	11	True
+GPS Lock	1	12	True
+GPS Coord	1	14	False
+Heading Rose	11	1	True
+Heading	24	14	False
+Home Direction	14	3	True
+Home Distance	22	1	True
+WP Distance	1	11	False
+Altitude	22	8	True
+Home Altitude	22	2	False
+Climb Rate	1	8	False
+Battery Percent	12	14	True
+Current	20	15	True
+Velocity	1	2	False
+Air Speed	1	1	False
+Throttle	1	3	False
+Flight Mode	1	14	True
+Horizon	8	6	True
+Wind Speed	24	7	False
+Warnings	9	4	True
+Time	21	13	True
+RSSI	8	13	False
+Efficiency	14	13	False
+Call Sign	0	0	False
+Temperature	1	11	False
+Trip Distance	0	1	True
+Panel 2
+Pitch	22	10	False
+Roll	11	1	False
+Battery A	1	13	False
+Visible Sats	1	9	False
+GPS Lock	1	10	False
+GPS Coord	1	14	False
+Heading Rose	21	15	True
+Heading	24	13	False
+Home Direction	14	1	True
+Home Distance	22	1	True
+WP Distance	9	14	True
+Altitude	22	4	False
+Home Altitude	22	3	True
+Climb Rate	1	7	False
+Battery Percent	24	13	True
+Current	1	12	False
+Velocity	1	2	True
+Air Speed	1	1	True
+Throttle	1	3	True
+Flight Mode	1	13	True
+Horizon	8	6	False
+Wind Speed	1	14	True
+Time	22	4	True
+RSSI	12	13	True
+Efficiency	1	3	False
+Call Sign	1	0	False
+Temperature	22	14	True
+Trip Distance	22	2	True
+Configuration
+Units	0
+Overspeed	40
+Stall	5
+Battery	97
+RSSI High	255
+RSSI Low	0
+RSSI Enable Raw	0
+Toggle Channel	3
+Chanel Rotation Switching	0
+Video Mode	1
+Battery Warning Level	10
+RSSI Warning Level	5
+OSD Brightness	0
+Call Sign	drone1ÿÿ

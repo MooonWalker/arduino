@@ -1,0 +1,11 @@
+<VisualMicro>
+  <Program Name="veglegeshomero1" Ext=".pde" Location="C:\DATA\Dropbox\arduino\veglegeshomero1">
+    <Compile IsCompiled="0" ConfigurationName="Debug" StopOnError="False" OptimiseLibs="True" OptimiseCore="True" BuildPath="C:\Users\i021059\AppData\Local\VMicro\Arduino\Builds\veglegeshomero1\atmega328" IncludeDebug="0" IncludesDebug="0" SketchName="veglegeshomero1" ProjectMacrosHaveChanged="1" McuMacrosHaveChanged="1" CompilerErrors="1" />
+    <Platform Name="Arduino">
+      <Board Name="atmega328" Description="Arduino Duemilanove w/ ATmega328" CoreFolder="C:\arduino-1.0.4windows\hardware\arduino\cores\arduino" VariantFullPath="C:\arduino-1.0.4windows\hardware\arduino\variants\standard" McuIdePath="C:\arduino-1.0.4windows" name="Arduino Duemilanove w/ ATmega328" upload.protocol="arduino" upload.maximum_size="30720" upload.speed="57600" bootloader.low_fuses="0xFF" bootloader.high_fuses="0xDA" bootloader.extended_fuses="0x05" bootloader.path="atmega" bootloader.file="ATmegaBOOT_168_atmega328.hex" bootloader.unlock_bits="0x3F" bootloader.lock_bits="0x0F" build.mcu="atmega328p" build.f_cpu="16000000L" build.core="arduino" build.variant="standard" runtime.ide.path="C:\arduino-1.0.4windows" build.system.path="C:\arduino-1.0.4windows\hardware\arduino\system" software="ARDUINO" runtime.ide.version="104" build.core.vmresolved="C:\arduino-1.0.4windows\hardware\arduino\cores\arduino" build.core.parentfolder.vmresolved="C:\arduino-1.0.4windows\hardware\arduino\cores" build.core.coresparentfolder.vmresolved="C:\arduino-1.0.4windows\hardware\arduino" vm.core.include="arduino.h" vm.boardsource.path="C:\arduino-1.0.4windows\hardware\arduino" vm.boardsource.name="boards.txt" vm.platformname.name="" build.variant.vmresolved="C:\arduino-1.0.4windows\hardware\arduino\variants\standard" />
+    </Platform>
+    <VCCodeModel>
+      <VCCodeMacros />
+    </VCCodeModel>
+  </Program>
+</VisualMicro>
