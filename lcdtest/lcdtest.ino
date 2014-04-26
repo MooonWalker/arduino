@@ -59,21 +59,48 @@ void setup()
 void loop() 
 {
 	DateTime now = RTC.now();
+	
 	// set the cursor to column 0, line 1
 	// (note: line 1 is the second row, since counting begins with 0):
 	lcd.setCursor(0, 0);
 	lcd.print(now.year(), DEC);
 	lcd.print('.');
-	lcd.print(now.month(), DEC);
+	if (now.month()<10)
+	{
+		lcd.print("0");
+		lcd.print(now.month(), DEC);
+	} 
+	else
+	{
+		lcd.print(now.month(), DEC);
+	}
+	
 	lcd.print('.');
-	lcd.print(now.day(), DEC);
+	if (now.day()<10)
+	{	
+		lcd.print("0");
+		lcd.print(now.day(), DEC);
+	} 
+	else
+	{
+		lcd.print(now.day(), DEC);	
+	}
+	
 	
 	lcd.setCursor(0,1);
 	lcd.print(now.hour(), DEC);
 	lcd.print(':');
 	lcd.print(now.minute(), DEC);
 	lcd.print(':');
-	lcd.print(now.second(), DEC);
+	if (now.second()<10)
+	{
+		lcd.print("0");
+		lcd.print(now.second(), DEC);
+	} 
+	else
+	{
+		lcd.print(now.second(), DEC);
+	}
 	// was there an interrupt?
 	if (isTriggered)	handleKeypress();	 
 	if (buttons) 
