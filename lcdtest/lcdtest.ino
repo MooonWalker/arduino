@@ -17,13 +17,15 @@ SDA fehér drót.
 #include <Wire.h>
 #include "Adafruit_MCP23017.h"
 #include "Adafruit_RGBLCDShield.h"
+#include "RTClib.h"
+
 
 // The shield uses the I2C SCL and SDA pins. On classic Arduinos
 // this is Analog 4 and 5 so you can't use those for analogRead() anymore
 // However, you can connect other I2C sensors to the I2C bus and share
 // the I2C bus.
 Adafruit_RGBLCDShield lcd = Adafruit_RGBLCDShield();
-
+RTC_DS1307 RTC;
 // These #defines make it easy to set the backlight color
 #define RED 0x1
 
@@ -36,18 +38,19 @@ void setup()
 	//Serial.begin(9600);
 	// set up the LCD's number of columns and rows:
 	lcd.begin(20, 4);	
+	RTC.begin();
 	
 	//This signal is active low, so HIGH-to-LOW when interrupt
 	lcd.enableButtonInterrupt();
-	
-	// Print a message to the LCD. We track how long it takes since
-	// this library has been optimized a bit and we're proud of it :)
-	int time = millis();
-	lcd.print("Hello, world!");
-	time = millis() - time;
-	//Serial.print("Took "); Serial.print(time); Serial.println(" ms");
+
 	lcd.setBacklight(RED);
 	//lcd.blink();
+	if (! RTC.isrunning())
+	{
+		lcd.println("RTC is NOT running!");
+		// following line sets the RTC to the date & time this sketch was compiled
+		RTC.adjust(DateTime(__DATE__, __TIME__));
+	}
 	//Catch the external interrupt from the button input
 	attachInterrupt(1,ISR_Button,FALLING);
 }
@@ -55,31 +58,41 @@ void setup()
 
 void loop() 
 {
+	DateTime now = RTC.now();
 	// set the cursor to column 0, line 1
 	// (note: line 1 is the second row, since counting begins with 0):
-	lcd.setCursor(0, 1);
-	// print the number of seconds since reset:
-	lcd.print(millis()/1000);
+	lcd.setCursor(0, 0);
+	lcd.print(now.year(), DEC);
+	lcd.print('.');
+	lcd.print(now.month(), DEC);
+	lcd.print('.');
+	lcd.print(now.day(), DEC);
+	
+	lcd.setCursor(0,1);
+	lcd.print(now.hour(), DEC);
+	lcd.print(':');
+	lcd.print(now.minute(), DEC);
+	lcd.print(':');
+	lcd.print(now.second(), DEC);
 	// was there an interrupt?
 	if (isTriggered)	handleKeypress();	 
 	if (buttons) 
-	{
-		
+	{		
 		//lcd.clear();
 		lcd.setCursor(0,3);
 		if (buttons & BUTTON_UP) 
 		{
-			lcd.print("UP ");
+			lcd.print("UP        ");
 			
 		}
 		if (buttons & BUTTON_DOWN) 
 		{
-			lcd.print("DOWN ");
+			lcd.print("DOWN      ");
 			//lcd.setBacklight(YELLOW);
 		}
 		if (buttons & BUTTON_LEFT) 
 		{
-			lcd.print("LEFT ");
+			lcd.print("LEFT      ");
 			//lcd.setBacklight(GREEN);
 		}
 		if (buttons & BUTTON_RIGHT) 
@@ -89,7 +102,7 @@ void loop()
 		}
 		if (buttons & BUTTON_SELECT) 
 		{
-			lcd.print("SELECT ");
+			lcd.print("SELECT    ");
 			//lcd.setBacklight(VIOLET);
 		}
 	}
