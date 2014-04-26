@@ -88,9 +88,27 @@ void loop()
 	
 	
 	lcd.setCursor(0,1);
-	lcd.print(now.hour(), DEC);
+	if (now.hour()<10)
+	{
+		lcd.print("0");
+		lcd.print(now.hour(), DEC);
+	} 
+	else
+	{
+		lcd.print(now.hour(), DEC);
+	}
+	
 	lcd.print(':');
-	lcd.print(now.minute(), DEC);
+	if (now.minute()<10)
+	{
+		lcd.print("0");
+		lcd.print(now.minute(), DEC);
+	} 
+	else
+	{
+		lcd.print(now.minute(), DEC);
+	}
+	
 	lcd.print(':');
 	if (now.second()<10)
 	{
