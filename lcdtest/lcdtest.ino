@@ -90,7 +90,7 @@ void loop()
 	lcd.setCursor(0,1);
 	if (now.hour()<10)
 	{
-		lcd.print("0");
+		lcd.print(" ");
 		lcd.print(now.hour(), DEC);
 	} 
 	else

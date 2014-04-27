@@ -60,12 +60,14 @@
         </avrgcc.compiler.symbols.DefSymbols>
         <avrgcc.compiler.directories.IncludePaths>
           <ListValues>
-            <Value>C:\arduino-1.0.4windows\hardware\arduino\cores\arduino</Value>
-            <Value>C:\arduino-1.0.4windows\hardware\arduino\variants\standard</Value>
-            <Value>c:\arduino-1.0.4windows\hardware\tools\avr\avr\include\</Value>
-            <Value>c:\arduino-1.0.4windows\hardware\tools\avr\avr\include\avr\</Value>
-            <Value>c:\arduino-1.0.4windows\hardware\tools\avr\avr\</Value>
-            <Value>c:\arduino-1.0.4windows\hardware\tools\avr\lib\gcc\avr\4.3.2\include\</Value>
+            <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
+            <Value>C:\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Arduino\libraries\Servo</Value>
+            <Value>C:\Arduino\libraries\Servo\utility</Value>
+            <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
+            <Value>c:\arduino\hardware\tools\avr\avr\include\avr\</Value>
+            <Value>c:\arduino\hardware\tools\avr\avr\</Value>
+            <Value>c:\arduino\hardware\tools\avr\lib\gcc\avr\4.3.2\include\</Value>
           </ListValues>
         </avrgcc.compiler.directories.IncludePaths>
         <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
@@ -89,12 +91,14 @@
         </avrgcccpp.compiler.symbols.DefSymbols>
         <avrgcccpp.compiler.directories.IncludePaths>
           <ListValues>
-            <Value>C:\arduino-1.0.4windows\hardware\arduino\cores\arduino</Value>
-            <Value>C:\arduino-1.0.4windows\hardware\arduino\variants\standard</Value>
-            <Value>c:\arduino-1.0.4windows\hardware\tools\avr\avr\include\</Value>
-            <Value>c:\arduino-1.0.4windows\hardware\tools\avr\avr\include\avr\</Value>
-            <Value>c:\arduino-1.0.4windows\hardware\tools\avr\avr\</Value>
-            <Value>c:\arduino-1.0.4windows\hardware\tools\avr\lib\gcc\avr\4.3.2\include\</Value>
+            <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
+            <Value>C:\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Arduino\libraries\Servo</Value>
+            <Value>C:\Arduino\libraries\Servo\utility</Value>
+            <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
+            <Value>c:\arduino\hardware\tools\avr\avr\include\avr\</Value>
+            <Value>c:\arduino\hardware\tools\avr\avr\</Value>
+            <Value>c:\arduino\hardware\tools\avr\lib\gcc\avr\4.3.2\include\</Value>
             <Value>
             </Value>
           </ListValues>
@@ -132,12 +136,14 @@
         </avrgcc.compiler.symbols.DefSymbols>
         <avrgcc.compiler.directories.IncludePaths>
           <ListValues>
-            <Value>C:\arduino-1.0.4windows\hardware\arduino\cores\arduino</Value>
-            <Value>C:\arduino-1.0.4windows\hardware\arduino\variants\standard</Value>
-            <Value>c:\arduino-1.0.4windows\hardware\tools\avr\avr\include\</Value>
-            <Value>c:\arduino-1.0.4windows\hardware\tools\avr\avr\include\avr\</Value>
-            <Value>c:\arduino-1.0.4windows\hardware\tools\avr\avr\</Value>
-            <Value>c:\arduino-1.0.4windows\hardware\tools\avr\lib\gcc\avr\4.3.2\include\</Value>
+            <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
+            <Value>C:\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Arduino\libraries\Servo</Value>
+            <Value>C:\Arduino\libraries\Servo\utility</Value>
+            <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
+            <Value>c:\arduino\hardware\tools\avr\avr\include\avr\</Value>
+            <Value>c:\arduino\hardware\tools\avr\avr\</Value>
+            <Value>c:\arduino\hardware\tools\avr\lib\gcc\avr\4.3.2\include\</Value>
           </ListValues>
         </avrgcc.compiler.directories.IncludePaths>
         <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
@@ -161,12 +167,14 @@
         </avrgcccpp.compiler.symbols.DefSymbols>
         <avrgcccpp.compiler.directories.IncludePaths>
           <ListValues>
-            <Value>C:\arduino-1.0.4windows\hardware\arduino\cores\arduino</Value>
-            <Value>C:\arduino-1.0.4windows\hardware\arduino\variants\standard</Value>
-            <Value>c:\arduino-1.0.4windows\hardware\tools\avr\avr\include\</Value>
-            <Value>c:\arduino-1.0.4windows\hardware\tools\avr\avr\include\avr\</Value>
-            <Value>c:\arduino-1.0.4windows\hardware\tools\avr\avr\</Value>
-            <Value>c:\arduino-1.0.4windows\hardware\tools\avr\lib\gcc\avr\4.3.2\include\</Value>
+            <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
+            <Value>C:\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Arduino\libraries\Servo</Value>
+            <Value>C:\Arduino\libraries\Servo\utility</Value>
+            <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
+            <Value>c:\arduino\hardware\tools\avr\avr\include\avr\</Value>
+            <Value>c:\arduino\hardware\tools\avr\avr\</Value>
+            <Value>c:\arduino\hardware\tools\avr\lib\gcc\avr\4.3.2\include\</Value>
             <Value>
             </Value>
           </ListValues>
