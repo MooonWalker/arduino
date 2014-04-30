@@ -107,7 +107,7 @@ void jobbServo(signed char velocity)
 		
 		case 1:
 		jobbservo.attach(9);
-		jobbservo.writeMicroseconds(1000);
+		jobbservo.writeMicroseconds(500);
 		break;
 		
 		case -1:

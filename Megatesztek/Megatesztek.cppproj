@@ -5,20 +5,21 @@
     <ProjectVersion>6.1</ProjectVersion>
     <ToolchainName>com.Atmel.AVRGCC8.CPP</ToolchainName>
     <ProjectGuid>{07b459b4-8d76-4638-bc6d-a459ba2d616b}</ProjectGuid>
-    <avrdevice>atmega328p</avrdevice>
+    <avrdevice>atmega2560</avrdevice>
     <avrdeviceseries>none</avrdeviceseries>
     <OutputType>Executable</OutputType>
     <Language>CPP</Language>
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>szervoteszt</AssemblyName>
-    <Name>szervoteszt</Name>
-    <RootNamespace>szervoteszt</RootNamespace>
+    <AssemblyName>Megatesztek</AssemblyName>
+    <Name>Megatesztek</Name>
+    <RootNamespace>Megatesztek</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
-    <OverrideVtorValue>exception_table</OverrideVtorValue>
+    <OverrideVtorValue>
+    </OverrideVtorValue>
     <eraseonlaunchrule>0</eraseonlaunchrule>
     <ProgFlashFromRam>true</ProgFlashFromRam>
     <RamSnippetAddress>0x20000000</RamSnippetAddress>
@@ -26,14 +27,13 @@
     <UncachedRange />
     <BootSegment>2</BootSegment>
     <AsfFrameworkConfig>
-      <framework-data>
+      <framework-data xmlns="">
         <options />
         <configurations />
         <files />
         <documentation help="" />
-        <offline-documentation help="" />
         <dependencies>
-          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.3.0" />
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.7.2" />
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
@@ -41,6 +41,7 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
       <AvrGccCpp>
+        <avrgcc.common.optimization.RelaxBranches>True</avrgcc.common.optimization.RelaxBranches>
         <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
         <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
         <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
@@ -49,11 +50,10 @@
         <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcc.compiler.symbols.DefSymbols>
           <ListValues>
-            <Value>__AVR_ATmega328p__</Value>
-            <Value>__AVR_ATmega328P__</Value>
+            <Value>__AVR_ATmega2560__</Value>
             <Value>ARDUINO=101</Value>
             <Value>ARDUINO_MAIN</Value>
-            <Value>F_CPU=8000000L</Value>
+            <Value>F_CPU=16000000L</Value>
             <Value>__AVR__</Value>
             <Value>__cplusplus</Value>
           </ListValues>
@@ -61,9 +61,7 @@
         <avrgcc.compiler.directories.IncludePaths>
           <ListValues>
             <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
-            <Value>C:\Arduino\hardware\arduino\variants\standard</Value>
-            <Value>C:\Arduino\libraries\Servo</Value>
-            <Value>C:\Arduino\libraries\Servo\utility</Value>
+            <Value>C:\Arduino\hardware\arduino\variants\mega</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\avr\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\</Value>
@@ -80,11 +78,10 @@
         <avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcccpp.compiler.symbols.DefSymbols>
           <ListValues>
-            <Value>__AVR_ATmega328p__</Value>
-            <Value>__AVR_ATmega328P__</Value>
+            <Value>__AVR_ATmega2560__</Value>
             <Value>ARDUINO=101</Value>
             <Value>ARDUINO_MAIN</Value>
-            <Value>F_CPU=8000000L</Value>
+            <Value>F_CPU=16000000L</Value>
             <Value>__AVR__</Value>
             <Value>__cplusplus</Value>
           </ListValues>
@@ -92,9 +89,7 @@
         <avrgcccpp.compiler.directories.IncludePaths>
           <ListValues>
             <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
-            <Value>C:\Arduino\hardware\arduino\variants\standard</Value>
-            <Value>C:\Arduino\libraries\Servo</Value>
-            <Value>C:\Arduino\libraries\Servo\utility</Value>
+            <Value>C:\Arduino\hardware\arduino\variants\mega</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\avr\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\</Value>
@@ -103,40 +98,39 @@
             </Value>
           </ListValues>
         </avrgcccpp.compiler.directories.IncludePaths>
-        <avrgcccpp.compiler.optimization.level>Optimize for size (-Os)</avrgcccpp.compiler.optimization.level>
+        <avrgcccpp.compiler.optimization.level>Optimize (-O1)</avrgcccpp.compiler.optimization.level>
         <avrgcccpp.compiler.optimization.PackStructureMembers>True</avrgcccpp.compiler.optimization.PackStructureMembers>
         <avrgcccpp.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcccpp.compiler.optimization.AllocateBytesNeededForEnum>
         <avrgcccpp.compiler.optimization.DebugLevel>Default (-g2)</avrgcccpp.compiler.optimization.DebugLevel>
         <avrgcccpp.compiler.warnings.AllWarnings>True</avrgcccpp.compiler.warnings.AllWarnings>
-        <avrgcccpp.compiler.miscellaneous.OtherFlags>-include=arduino.h -fno-exceptions</avrgcccpp.compiler.miscellaneous.OtherFlags>
+        <avrgcccpp.compiler.miscellaneous.OtherFlags>-include=arduino.h</avrgcccpp.compiler.miscellaneous.OtherFlags>
         <avrgcccpp.linker.memorysettings.Comment>&lt;segmentname&gt;=&lt;address&gt;, for example  .boot=0xff</avrgcccpp.linker.memorysettings.Comment>
         <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
       </AvrGccCpp>
     </ToolchainSettings>
     <VisualMicroSettings>
       <VisualMicroSettings>
-        <arduino.upload.port>COM11</arduino.upload.port>
-        <arduino.board.name>atmega328bb</arduino.board.name>
-        <arduino.board.desc>ATmega328 on a breadboard (8 MHz internal clock)</arduino.board.desc>
-        <arduino.board.property_bag>name=ATmega328 on a breadboard (8 MHz internal clock)
-upload.protocol=stk500
-upload.maximum_size=30720
-upload.speed=57600
-bootloader.low_fuses=0xE2
-bootloader.high_fuses=0xDA
-bootloader.extended_fuses=0x05
-bootloader.path=arduino:atmega
-bootloader.file=ATmegaBOOT_168_atmega328_pro_8MHz.hex
+        <arduino.board.name>mega2560</arduino.board.name>
+        <arduino.board.desc>Arduino Mega 2560 or Mega ADK</arduino.board.desc>
+        <arduino.board.property_bag>name=Arduino Mega 2560 or Mega ADK
+upload.protocol=wiring
+upload.maximum_size=258048
+upload.speed=115200
+bootloader.low_fuses=0xFF
+bootloader.high_fuses=0xD8
+bootloader.extended_fuses=0xFD
+bootloader.path=stk500v2
+bootloader.file=stk500boot_v2_mega2560.hex
 bootloader.unlock_bits=0x3F
 bootloader.lock_bits=0x0F
-build.mcu=atmega328p
-build.f_cpu=8000000L
-build.core=arduino:arduino
-build.variant=arduino:standard
+build.mcu=atmega2560
+build.f_cpu=16000000L
+build.core=arduino
+build.variant=mega
 runtime.ide.path=C:\Arduino
 build.system.path=C:\Arduino\hardware\arduino\system
 runtime.ide.version=101
-originalid=atmega328bb
+originalid=mega2560
 vm.platform.root.path=C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\arduino10x
 vm.core.include=arduino.h
 ide.hint=Arduino 0023 and 1.0.x Ide
@@ -162,26 +156,28 @@ vm.debug=true
 software=ARDUINO
 ide.appid=arduino10x
 location.sketchbook=c:\DATA\Dropbox\arduino
-build.board=AVR_ATMEGA328BB
+build.board=AVR_MEGA2560
 vm.boardsource.path=C:\Arduino\hardware\arduino
 vm.platformname.name=avr
 build.arch=AVR
 </arduino.board.property_bag>
-        <arduino.build.mcu>atmega328p</arduino.build.mcu>
-        <arduino.build.f_cpu>8000000L</arduino.build.f_cpu>
+        <arduino.build.mcu>atmega2560</arduino.build.mcu>
+        <arduino.build.f_cpu>16000000L</arduino.build.f_cpu>
         <arduino.build.core>arduino</arduino.build.core>
-        <arduino.upload.protocol>stk500</arduino.upload.protocol>
-        <arduino.upload.speed>57600</arduino.upload.speed>
-        <arduino.upload.maximum_size>30720</arduino.upload.maximum_size>
+        <arduino.upload.protocol>wiring</arduino.upload.protocol>
+        <arduino.upload.speed>115200</arduino.upload.speed>
+        <arduino.upload.maximum_size>258048</arduino.upload.maximum_size>
         <visualmicro.application.name>arduino10x</visualmicro.application.name>
         <visualmicro.package.name>arduino</visualmicro.package.name>
         <visualmicro.platform.name>avr</visualmicro.platform.name>
+        <arduino.upload.port>COM9</arduino.upload.port>
       </VisualMicroSettings>
     </VisualMicroSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <ToolchainSettings>
       <AvrGccCpp>
+        <avrgcc.common.optimization.RelaxBranches>True</avrgcc.common.optimization.RelaxBranches>
         <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
         <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
         <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
@@ -190,11 +186,10 @@ build.arch=AVR
         <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcc.compiler.symbols.DefSymbols>
           <ListValues>
-            <Value>__AVR_ATmega328p__</Value>
-            <Value>__AVR_ATmega328P__</Value>
+            <Value>__AVR_ATmega2560__</Value>
             <Value>ARDUINO=101</Value>
             <Value>ARDUINO_MAIN</Value>
-            <Value>F_CPU=8000000L</Value>
+            <Value>F_CPU=16000000L</Value>
             <Value>__AVR__</Value>
             <Value>__cplusplus</Value>
           </ListValues>
@@ -202,9 +197,7 @@ build.arch=AVR
         <avrgcc.compiler.directories.IncludePaths>
           <ListValues>
             <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
-            <Value>C:\Arduino\hardware\arduino\variants\standard</Value>
-            <Value>C:\Arduino\libraries\Servo</Value>
-            <Value>C:\Arduino\libraries\Servo\utility</Value>
+            <Value>C:\Arduino\hardware\arduino\variants\mega</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\avr\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\</Value>
@@ -221,11 +214,10 @@ build.arch=AVR
         <avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcccpp.compiler.symbols.DefSymbols>
           <ListValues>
-            <Value>__AVR_ATmega328p__</Value>
-            <Value>__AVR_ATmega328P__</Value>
+            <Value>__AVR_ATmega2560__</Value>
             <Value>ARDUINO=101</Value>
             <Value>ARDUINO_MAIN</Value>
-            <Value>F_CPU=8000000L</Value>
+            <Value>F_CPU=16000000L</Value>
             <Value>__AVR__</Value>
             <Value>__cplusplus</Value>
           </ListValues>
@@ -233,9 +225,7 @@ build.arch=AVR
         <avrgcccpp.compiler.directories.IncludePaths>
           <ListValues>
             <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
-            <Value>C:\Arduino\hardware\arduino\variants\standard</Value>
-            <Value>C:\Arduino\libraries\Servo</Value>
-            <Value>C:\Arduino\libraries\Servo\utility</Value>
+            <Value>C:\Arduino\hardware\arduino\variants\mega</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\avr\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\</Value>
@@ -244,40 +234,39 @@ build.arch=AVR
             </Value>
           </ListValues>
         </avrgcccpp.compiler.directories.IncludePaths>
-        <avrgcccpp.compiler.optimization.level>Optimize for size (-Os)</avrgcccpp.compiler.optimization.level>
+        <avrgcccpp.compiler.optimization.level>Optimize (-O1)</avrgcccpp.compiler.optimization.level>
         <avrgcccpp.compiler.optimization.PackStructureMembers>True</avrgcccpp.compiler.optimization.PackStructureMembers>
         <avrgcccpp.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcccpp.compiler.optimization.AllocateBytesNeededForEnum>
         <avrgcccpp.compiler.optimization.DebugLevel>Default (-g2)</avrgcccpp.compiler.optimization.DebugLevel>
         <avrgcccpp.compiler.warnings.AllWarnings>True</avrgcccpp.compiler.warnings.AllWarnings>
-        <avrgcccpp.compiler.miscellaneous.OtherFlags>-include=arduino.h -fno-exceptions</avrgcccpp.compiler.miscellaneous.OtherFlags>
+        <avrgcccpp.compiler.miscellaneous.OtherFlags>-include=arduino.h</avrgcccpp.compiler.miscellaneous.OtherFlags>
         <avrgcccpp.linker.memorysettings.Comment>&lt;segmentname&gt;=&lt;address&gt;, for example  .boot=0xff</avrgcccpp.linker.memorysettings.Comment>
         <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
       </AvrGccCpp>
     </ToolchainSettings>
     <VisualMicroSettings>
       <VisualMicroSettings>
-        <arduino.upload.port>COM11</arduino.upload.port>
-        <arduino.board.name>atmega328bb</arduino.board.name>
-        <arduino.board.desc>ATmega328 on a breadboard (8 MHz internal clock)</arduino.board.desc>
-        <arduino.board.property_bag>name=ATmega328 on a breadboard (8 MHz internal clock)
-upload.protocol=stk500
-upload.maximum_size=30720
-upload.speed=57600
-bootloader.low_fuses=0xE2
-bootloader.high_fuses=0xDA
-bootloader.extended_fuses=0x05
-bootloader.path=arduino:atmega
-bootloader.file=ATmegaBOOT_168_atmega328_pro_8MHz.hex
+        <arduino.board.name>mega2560</arduino.board.name>
+        <arduino.board.desc>Arduino Mega 2560 or Mega ADK</arduino.board.desc>
+        <arduino.board.property_bag>name=Arduino Mega 2560 or Mega ADK
+upload.protocol=wiring
+upload.maximum_size=258048
+upload.speed=115200
+bootloader.low_fuses=0xFF
+bootloader.high_fuses=0xD8
+bootloader.extended_fuses=0xFD
+bootloader.path=stk500v2
+bootloader.file=stk500boot_v2_mega2560.hex
 bootloader.unlock_bits=0x3F
 bootloader.lock_bits=0x0F
-build.mcu=atmega328p
-build.f_cpu=8000000L
-build.core=arduino:arduino
-build.variant=arduino:standard
+build.mcu=atmega2560
+build.f_cpu=16000000L
+build.core=arduino
+build.variant=mega
 runtime.ide.path=C:\Arduino
 build.system.path=C:\Arduino\hardware\arduino\system
 runtime.ide.version=101
-originalid=atmega328bb
+originalid=mega2560
 vm.platform.root.path=C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\arduino10x
 vm.core.include=arduino.h
 ide.hint=Arduino 0023 and 1.0.x Ide
@@ -303,25 +292,26 @@ vm.debug=true
 software=ARDUINO
 ide.appid=arduino10x
 location.sketchbook=c:\DATA\Dropbox\arduino
-build.board=AVR_ATMEGA328BB
+build.board=AVR_MEGA2560
 vm.boardsource.path=C:\Arduino\hardware\arduino
 vm.platformname.name=avr
 build.arch=AVR
 </arduino.board.property_bag>
-        <arduino.build.mcu>atmega328p</arduino.build.mcu>
-        <arduino.build.f_cpu>8000000L</arduino.build.f_cpu>
+        <arduino.build.mcu>atmega2560</arduino.build.mcu>
+        <arduino.build.f_cpu>16000000L</arduino.build.f_cpu>
         <arduino.build.core>arduino</arduino.build.core>
-        <arduino.upload.protocol>stk500</arduino.upload.protocol>
-        <arduino.upload.speed>57600</arduino.upload.speed>
-        <arduino.upload.maximum_size>30720</arduino.upload.maximum_size>
+        <arduino.upload.protocol>wiring</arduino.upload.protocol>
+        <arduino.upload.speed>115200</arduino.upload.speed>
+        <arduino.upload.maximum_size>258048</arduino.upload.maximum_size>
         <visualmicro.application.name>arduino10x</visualmicro.application.name>
         <visualmicro.package.name>arduino</visualmicro.package.name>
         <visualmicro.platform.name>avr</visualmicro.platform.name>
+        <arduino.upload.port>COM9</arduino.upload.port>
       </VisualMicroSettings>
     </VisualMicroSettings>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="szervoteszt.ino">
+    <None Include="Megatesztek.ino">
       <SubType>compile</SubType>
     </None>
   </ItemGroup>
@@ -329,7 +319,7 @@ build.arch=AVR
     <Folder Include="Visual Micro\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Visual Micro\.szervoteszt.vsarduino.h">
+    <Compile Include="Visual Micro\.Megatesztek.vsarduino.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
