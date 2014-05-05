@@ -29,9 +29,27 @@ void loop () {
 	
 	Serial.print(now.year(), DEC);
 	Serial.print('.');
-	Serial.print(now.month(), DEC);
+	if (now.month()<10)
+	{
+		Serial.print("0");
+		Serial.print(now.month(), DEC);
+	} 
+	else
+	{
+		Serial.print(now.month(), DEC);
+	}
+	
 	Serial.print('.');
-	Serial.print(now.day(), DEC);
+	if (now.day()<10)
+	{
+		Serial.print("0");
+		Serial.print(now.day(), DEC);
+	} 
+	else
+	{
+		Serial.print(now.day(), DEC);
+	}
+	
 	Serial.print(' ');
 	Serial.print(now.hour(), DEC);
 	Serial.print(':');
