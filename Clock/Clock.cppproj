@@ -5,16 +5,16 @@
     <ProjectVersion>6.1</ProjectVersion>
     <ToolchainName>com.Atmel.AVRGCC8.CPP</ToolchainName>
     <ProjectGuid>{07b459b4-8d76-4638-bc6d-a459ba2d616b}</ProjectGuid>
-    <avrdevice>atmega328p</avrdevice>
+    <avrdevice>atmega2560</avrdevice>
     <avrdeviceseries>none</avrdeviceseries>
     <OutputType>Executable</OutputType>
     <Language>CPP</Language>
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>i2cscanner</AssemblyName>
-    <Name>i2cscanner</Name>
-    <RootNamespace>i2cscanner</RootNamespace>
+    <AssemblyName>Clock</AssemblyName>
+    <Name>Clock</Name>
+    <RootNamespace>Clock</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
@@ -27,13 +27,14 @@
     <UncachedRange />
     <BootSegment>2</BootSegment>
     <AsfFrameworkConfig>
-      <framework-data xmlns="">
+      <framework-data>
         <options />
         <configurations />
         <files />
         <documentation help="" />
+        <offline-documentation help="" />
         <dependencies>
-          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.7.2" />
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.3.0" />
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
@@ -41,29 +42,25 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
       <AvrGccCpp>
+        <avrgcc.common.optimization.RelaxBranches>True</avrgcc.common.optimization.RelaxBranches>
         <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
         <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
         <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
         <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
         <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
         <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
-        <avrgcc.compiler.symbols.DefSymbols>
-          <ListValues>
-            <Value>__AVR_ATmega328p__</Value>
-            <Value>__AVR_ATmega328P__</Value>
-            <Value>ARDUINO=101</Value>
-            <Value>ARDUINO_MAIN</Value>
-            <Value>F_CPU=16000000L</Value>
-            <Value>__AVR__</Value>
-            <Value>__cplusplus</Value>
-          </ListValues>
-        </avrgcc.compiler.symbols.DefSymbols>
         <avrgcc.compiler.directories.IncludePaths>
           <ListValues>
             <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
-            <Value>C:\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Arduino\hardware\arduino\variants\mega</Value>
             <Value>C:\Arduino\libraries\Wire</Value>
             <Value>C:\Arduino\libraries\Wire\utility</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_LED_Backpack_Library</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_LED_Backpack_Library\utility</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_GFX_Library</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_GFX_Library\utility</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master\utility</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\avr\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\</Value>
@@ -80,8 +77,7 @@
         <avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcccpp.compiler.symbols.DefSymbols>
           <ListValues>
-            <Value>__AVR_ATmega328p__</Value>
-            <Value>__AVR_ATmega328P__</Value>
+            <Value>__AVR_ATmega2560__</Value>
             <Value>ARDUINO=101</Value>
             <Value>ARDUINO_MAIN</Value>
             <Value>F_CPU=16000000L</Value>
@@ -92,9 +88,15 @@
         <avrgcccpp.compiler.directories.IncludePaths>
           <ListValues>
             <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
-            <Value>C:\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Arduino\hardware\arduino\variants\mega</Value>
             <Value>C:\Arduino\libraries\Wire</Value>
             <Value>C:\Arduino\libraries\Wire\utility</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_LED_Backpack_Library</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_LED_Backpack_Library\utility</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_GFX_Library</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_GFX_Library\utility</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master\utility</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\avr\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\</Value>
@@ -111,35 +113,41 @@
         <avrgcccpp.compiler.miscellaneous.OtherFlags>-include=arduino.h</avrgcccpp.compiler.miscellaneous.OtherFlags>
         <avrgcccpp.linker.memorysettings.Comment>&lt;segmentname&gt;=&lt;address&gt;, for example  .boot=0xff</avrgcccpp.linker.memorysettings.Comment>
         <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
+        <avrgcc.compiler.symbols.DefSymbols>
+          <ListValues>
+            <Value>__AVR_ATmega2560__</Value>
+            <Value>ARDUINO=101</Value>
+            <Value>ARDUINO_MAIN</Value>
+            <Value>F_CPU=16000000L</Value>
+            <Value>__AVR__</Value>
+            <Value>__cplusplus</Value>
+          </ListValues>
+        </avrgcc.compiler.symbols.DefSymbols>
       </AvrGccCpp>
     </ToolchainSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <ToolchainSettings>
       <AvrGccCpp>
+        <avrgcc.common.optimization.RelaxBranches>True</avrgcc.common.optimization.RelaxBranches>
         <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
         <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
         <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
         <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
         <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
         <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
-        <avrgcc.compiler.symbols.DefSymbols>
-          <ListValues>
-            <Value>__AVR_ATmega328p__</Value>
-            <Value>__AVR_ATmega328P__</Value>
-            <Value>ARDUINO=101</Value>
-            <Value>ARDUINO_MAIN</Value>
-            <Value>F_CPU=16000000L</Value>
-            <Value>__AVR__</Value>
-            <Value>__cplusplus</Value>
-          </ListValues>
-        </avrgcc.compiler.symbols.DefSymbols>
         <avrgcc.compiler.directories.IncludePaths>
           <ListValues>
             <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
-            <Value>C:\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Arduino\hardware\arduino\variants\mega</Value>
             <Value>C:\Arduino\libraries\Wire</Value>
             <Value>C:\Arduino\libraries\Wire\utility</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_LED_Backpack_Library</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_LED_Backpack_Library\utility</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_GFX_Library</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_GFX_Library\utility</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master\utility</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\avr\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\</Value>
@@ -156,8 +164,7 @@
         <avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcccpp.compiler.symbols.DefSymbols>
           <ListValues>
-            <Value>__AVR_ATmega328p__</Value>
-            <Value>__AVR_ATmega328P__</Value>
+            <Value>__AVR_ATmega2560__</Value>
             <Value>ARDUINO=101</Value>
             <Value>ARDUINO_MAIN</Value>
             <Value>F_CPU=16000000L</Value>
@@ -168,9 +175,15 @@
         <avrgcccpp.compiler.directories.IncludePaths>
           <ListValues>
             <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
-            <Value>C:\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Arduino\hardware\arduino\variants\mega</Value>
             <Value>C:\Arduino\libraries\Wire</Value>
             <Value>C:\Arduino\libraries\Wire\utility</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_LED_Backpack_Library</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_LED_Backpack_Library\utility</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_GFX_Library</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_GFX_Library\utility</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master\utility</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\avr\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\</Value>
@@ -187,11 +200,21 @@
         <avrgcccpp.compiler.miscellaneous.OtherFlags>-include=arduino.h</avrgcccpp.compiler.miscellaneous.OtherFlags>
         <avrgcccpp.linker.memorysettings.Comment>&lt;segmentname&gt;=&lt;address&gt;, for example  .boot=0xff</avrgcccpp.linker.memorysettings.Comment>
         <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
+        <avrgcc.compiler.symbols.DefSymbols>
+          <ListValues>
+            <Value>__AVR_ATmega2560__</Value>
+            <Value>ARDUINO=101</Value>
+            <Value>ARDUINO_MAIN</Value>
+            <Value>F_CPU=16000000L</Value>
+            <Value>__AVR__</Value>
+            <Value>__cplusplus</Value>
+          </ListValues>
+        </avrgcc.compiler.symbols.DefSymbols>
       </AvrGccCpp>
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="i2cscanner.ino">
+    <None Include="Clock.ino">
       <SubType>compile</SubType>
     </None>
   </ItemGroup>
@@ -199,7 +222,7 @@
     <Folder Include="Visual Micro\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Visual Micro\.i2cscanner.vsarduino.h">
+    <Compile Include="Visual Micro\.Clock.vsarduino.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

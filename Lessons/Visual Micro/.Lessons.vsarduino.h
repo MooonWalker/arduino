@@ -2,7 +2,7 @@
 	Editor: http://www.visualmicro.com
 	        arduino debugger, visual micro +, free forum and wiki
 	
-	Hardware: Arduino Duemilanove w/ ATmega328, Platform=avr, Package=arduino
+	Hardware: [Optiboot] Arduino Duemilanove or Nano w/ ATmega328, Platform=avr, Package=arduino
 */
 
 #define __AVR_ATmega328p__
@@ -15,8 +15,10 @@
 extern "C" void __cxa_pure_virtual() {;}
 
 //
+void showNumber(int number);
+void showDigit( int number, int digit );
 //
 
 #include "C:\Arduino\hardware\arduino\variants\standard\pins_arduino.h" 
 #include "C:\Arduino\hardware\arduino\cores\arduino\arduino.h"
-#include "c:\DATA\Dropbox\arduino\i2cscanner\i2cscanner.ino"
+#include "C:\DATA\Dropbox\arduino\Lessons\Lessons.ino"

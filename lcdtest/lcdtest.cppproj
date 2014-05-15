@@ -5,7 +5,7 @@
     <ProjectVersion>6.1</ProjectVersion>
     <ToolchainName>com.Atmel.AVRGCC8.CPP</ToolchainName>
     <ProjectGuid>{07b459b4-8d76-4638-bc6d-a459ba2d616b}</ProjectGuid>
-    <avrdevice>atmega328p</avrdevice>
+    <avrdevice>atmega2560</avrdevice>
     <avrdeviceseries>none</avrdeviceseries>
     <OutputType>Executable</OutputType>
     <Language>CPP</Language>
@@ -42,6 +42,7 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
       <AvrGccCpp>
+        <avrgcc.common.optimization.RelaxBranches>True</avrgcc.common.optimization.RelaxBranches>
         <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
         <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
         <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
@@ -50,8 +51,7 @@
         <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcc.compiler.symbols.DefSymbols>
           <ListValues>
-            <Value>__AVR_ATmega328p__</Value>
-            <Value>__AVR_ATmega328P__</Value>
+            <Value>__AVR_ATmega2560__</Value>
             <Value>ARDUINO=101</Value>
             <Value>ARDUINO_MAIN</Value>
             <Value>F_CPU=16000000L</Value>
@@ -62,11 +62,11 @@
         <avrgcc.compiler.directories.IncludePaths>
           <ListValues>
             <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
-            <Value>C:\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Arduino\hardware\arduino\variants\mega</Value>
             <Value>C:\Arduino\libraries\Wire</Value>
             <Value>C:\Arduino\libraries\Wire\utility</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit-RGB-LCD-Shield-Library-master</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit-RGB-LCD-Shield-Library-master\utility</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_RGB_LCD_Shield_Library</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_RGB_LCD_Shield_Library\utility</Value>
             <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master</Value>
             <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master\utility</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
@@ -85,8 +85,7 @@
         <avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcccpp.compiler.symbols.DefSymbols>
           <ListValues>
-            <Value>__AVR_ATmega328p__</Value>
-            <Value>__AVR_ATmega328P__</Value>
+            <Value>__AVR_ATmega2560__</Value>
             <Value>ARDUINO=101</Value>
             <Value>ARDUINO_MAIN</Value>
             <Value>F_CPU=16000000L</Value>
@@ -97,11 +96,11 @@
         <avrgcccpp.compiler.directories.IncludePaths>
           <ListValues>
             <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
-            <Value>C:\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Arduino\hardware\arduino\variants\mega</Value>
             <Value>C:\Arduino\libraries\Wire</Value>
             <Value>C:\Arduino\libraries\Wire\utility</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit-RGB-LCD-Shield-Library-master</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit-RGB-LCD-Shield-Library-master\utility</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_RGB_LCD_Shield_Library</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_RGB_LCD_Shield_Library\utility</Value>
             <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master</Value>
             <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master\utility</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
@@ -126,6 +125,7 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <ToolchainSettings>
       <AvrGccCpp>
+        <avrgcc.common.optimization.RelaxBranches>True</avrgcc.common.optimization.RelaxBranches>
         <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
         <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
         <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
@@ -134,8 +134,7 @@
         <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcc.compiler.symbols.DefSymbols>
           <ListValues>
-            <Value>__AVR_ATmega328p__</Value>
-            <Value>__AVR_ATmega328P__</Value>
+            <Value>__AVR_ATmega2560__</Value>
             <Value>ARDUINO=101</Value>
             <Value>ARDUINO_MAIN</Value>
             <Value>F_CPU=16000000L</Value>
@@ -146,11 +145,11 @@
         <avrgcc.compiler.directories.IncludePaths>
           <ListValues>
             <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
-            <Value>C:\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Arduino\hardware\arduino\variants\mega</Value>
             <Value>C:\Arduino\libraries\Wire</Value>
             <Value>C:\Arduino\libraries\Wire\utility</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit-RGB-LCD-Shield-Library-master</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit-RGB-LCD-Shield-Library-master\utility</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_RGB_LCD_Shield_Library</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_RGB_LCD_Shield_Library\utility</Value>
             <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master</Value>
             <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master\utility</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
@@ -169,8 +168,7 @@
         <avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcccpp.compiler.general.ChangeDefaultBitFieldUnsigned>
         <avrgcccpp.compiler.symbols.DefSymbols>
           <ListValues>
-            <Value>__AVR_ATmega328p__</Value>
-            <Value>__AVR_ATmega328P__</Value>
+            <Value>__AVR_ATmega2560__</Value>
             <Value>ARDUINO=101</Value>
             <Value>ARDUINO_MAIN</Value>
             <Value>F_CPU=16000000L</Value>
@@ -181,11 +179,11 @@
         <avrgcccpp.compiler.directories.IncludePaths>
           <ListValues>
             <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
-            <Value>C:\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Arduino\hardware\arduino\variants\mega</Value>
             <Value>C:\Arduino\libraries\Wire</Value>
             <Value>C:\Arduino\libraries\Wire\utility</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit-RGB-LCD-Shield-Library-master</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit-RGB-LCD-Shield-Library-master\utility</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_RGB_LCD_Shield_Library</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_RGB_LCD_Shield_Library\utility</Value>
             <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master</Value>
             <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master\utility</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
