@@ -1,30 +1,42 @@
-  //These displays use I2C to communicate, 2 pins are required to 
-  //interface. There are multiple selectable I2C addresses. For backpacks
-  //with 2 Address Select pins: 0x70, 0x71, 0x72 or 0x73. For backpacks
-  //with 3 Address Select pins: 0x70 thru 0x77
-//
-  //Adafruit invests time and resources providing this open source code, 
-  //please support Adafruit and open-source hardware by purchasing 
-  //products from Adafruit!
-//
-  //Written by Limor Fried/Ladyada for Adafruit Industries.  
-  //BSD license, all text above must be included in any redistribution
- //****************************************************/
 
 #include <Wire.h> // Enable this line if using Arduino Uno, Mega, etc.
 #include "Adafruit_LEDBackpack.h"
 #include "Adafruit_GFX.h"
 #include "RTClib.h"
 
+#define encoderPinA  19
+#define encoderPinB  18
+
+int pulses, A_SIG=0, B_SIG=1;
+
+long debouncing_time = 7; //ms
+volatile unsigned long last_microsA;
+volatile unsigned long last_microsB;
+//volatile unsigned int encoderPos=0;
+volatile unsigned int brightness=0;
+volatile boolean rotaryChanged=0;
+
 Adafruit_7segment matrix = Adafruit_7segment();
 RTC_DS1307 RTC;
 
 void setup() 
 {
+	//Serial.begin(9600);
+	//Serial.println("Start...");
+	delay(10);
+	pinMode(encoderPinA, INPUT);
+	pinMode(encoderPinB, INPUT);
+	digitalWrite(encoderPinA, HIGH);
+	digitalWrite(encoderPinB, HIGH);
+	
+	delay(5);
+	attachInterrupt(4, doEncoderARise, RISING);
+	attachInterrupt(5, doEncoderBRise, RISING);
 	
 	RTC.begin();
 	matrix.begin(0x70);
-	matrix.setBrightness(4);
+	matrix.setBrightness(brightness);	
+	delay(5);
 }
 
 void loop() 
@@ -32,6 +44,13 @@ void loop()
 	DateTime now = RTC.now(); 
 	static int oldPerc = 0;
 	
+if (rotaryChanged)
+{
+	matrix.setBrightness(brightness);
+	rotaryChanged=false;
+	delay(1);
+}
+
 if (oldPerc!=now.minute())
 {
 	
@@ -39,6 +58,7 @@ if (oldPerc!=now.minute())
 	
 	if (now.hour()<10)
 	{
+		matrix.clear();
 		matrix.writeDigitNum(1, now.hour(), 0);
 	}
 	else
@@ -64,3 +84,102 @@ if (oldPerc!=now.minute())
 	
   } //endif
 } 
+
+void doEncoderARise()
+{
+	  // look for a low-to-high on channel A
+	   if((long)(micros() - last_microsA) >= debouncing_time * 1000) 
+	   {
+		rotaryChanged=true;
+		detachInterrupt(4);
+		A_SIG=1;
+		if(B_SIG==0)
+		{
+			
+			pulses++;//moving forward
+			if (brightness<15)
+			{
+				brightness++;
+				//Serial.print("BrightnessA: ");
+				//Serial.println(brightness);
+				
+			}
+		}
+		if(B_SIG==1)
+		{
+			pulses--;//moving reverse
+			
+			
+		}
+		//Serial.println(pulses);
+		
+		attachInterrupt(4,doEncoderAFall,FALLING);
+		   
+		last_microsA = micros();
+	   }
+	  
+}
+
+void doEncoderAFall()
+{
+	 if((long)(micros() - last_microsA) >= debouncing_time * 1000) 
+	 {
+		detachInterrupt(4);
+		A_SIG=0;
+		if(B_SIG==1)
+		pulses++;//moving forward
+		if(B_SIG==0)
+		{
+			pulses--;//moving reverse
+			if (brightness>0)
+			{
+				brightness--;
+				//Serial.print("BrightnessA: ");
+				//Serial.println(brightness);
+			}
+		}
+		//Serial.println(pulses);
+		delay(5);
+		attachInterrupt(4,doEncoderARise, RISING);	
+		 last_microsA = micros();
+	 }
+	
+}
+
+void doEncoderBRise()
+{
+	 if((long)(micros() - last_microsB) >= debouncing_time * 1000) 
+	 {
+	detachInterrupt(5);
+	B_SIG=1;
+	
+	if(A_SIG==1)
+	pulses++;//moving forward
+	if(A_SIG==0)
+	pulses--;//moving reverse
+	//Serial.println(pulses);
+	delay(5);
+	attachInterrupt(5, doEncoderBFall, FALLING);
+		 last_microsB = micros();
+	 }
+	
+}
+
+void doEncoderBFall()
+{
+	 if((long)(micros() - last_microsB) >= debouncing_time * 1000) 
+	 {
+		detachInterrupt(5);
+		B_SIG=0;
+		
+		if(A_SIG==0)
+		pulses++;//moving forward
+		if(A_SIG==1)
+		pulses--;//moving reverse
+		//Serial.println(pulses);
+		delay(5);
+		attachInterrupt(5, doEncoderBRise, RISING);
+		 last_microsB = micros();
+	 }
+	
+}

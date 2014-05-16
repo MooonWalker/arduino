@@ -15,11 +15,9 @@ extern "C" void __cxa_pure_virtual() {;}
 
 //
 //
-void doEncoderARise();
-void doEncoderAFall();
-void doEncoderBRise();
-void doEncoderBFall();
+void doInterrupt4();
+void doInterrupt5();
 
 #include "C:\Arduino\hardware\arduino\variants\mega\pins_arduino.h" 
 #include "C:\Arduino\hardware\arduino\cores\arduino\arduino.h"
-#include "C:\DATA\Dropbox\arduino\Clock\Clock.ino"
+#include "c:\DATA\Dropbox\arduino\Interruptteszt\Interruptteszt.ino"

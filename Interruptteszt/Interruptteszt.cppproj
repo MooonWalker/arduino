@@ -12,9 +12,9 @@
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>Clock</AssemblyName>
-    <Name>Clock</Name>
-    <RootNamespace>Clock</RootNamespace>
+    <AssemblyName>Interruptteszt</AssemblyName>
+    <Name>Interruptteszt</Name>
+    <RootNamespace>Interruptteszt</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
@@ -27,14 +27,13 @@
     <UncachedRange />
     <BootSegment>2</BootSegment>
     <AsfFrameworkConfig>
-      <framework-data>
+      <framework-data xmlns="">
         <options />
         <configurations />
         <files />
         <documentation help="" />
-        <offline-documentation help="" />
         <dependencies>
-          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.3.0" />
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.7.2" />
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
@@ -53,14 +52,6 @@
           <ListValues>
             <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
             <Value>C:\Arduino\hardware\arduino\variants\mega</Value>
-            <Value>C:\Arduino\libraries\Wire</Value>
-            <Value>C:\Arduino\libraries\Wire\utility</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_LED_Backpack_Library</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_LED_Backpack_Library\utility</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_GFX_Library</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_GFX_Library\utility</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master\utility</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\avr\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\</Value>
@@ -89,14 +80,6 @@
           <ListValues>
             <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
             <Value>C:\Arduino\hardware\arduino\variants\mega</Value>
-            <Value>C:\Arduino\libraries\Wire</Value>
-            <Value>C:\Arduino\libraries\Wire\utility</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_LED_Backpack_Library</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_LED_Backpack_Library\utility</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_GFX_Library</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_GFX_Library\utility</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master\utility</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\avr\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\</Value>
@@ -140,14 +123,6 @@
           <ListValues>
             <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
             <Value>C:\Arduino\hardware\arduino\variants\mega</Value>
-            <Value>C:\Arduino\libraries\Wire</Value>
-            <Value>C:\Arduino\libraries\Wire\utility</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_LED_Backpack_Library</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_LED_Backpack_Library\utility</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_GFX_Library</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_GFX_Library\utility</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master\utility</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\avr\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\</Value>
@@ -176,14 +151,6 @@
           <ListValues>
             <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
             <Value>C:\Arduino\hardware\arduino\variants\mega</Value>
-            <Value>C:\Arduino\libraries\Wire</Value>
-            <Value>C:\Arduino\libraries\Wire\utility</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_LED_Backpack_Library</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_LED_Backpack_Library\utility</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_GFX_Library</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\Adafruit_GFX_Library\utility</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master</Value>
-            <Value>c:\DATA\Dropbox\arduino\libraries\RTClib-master\utility</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\avr\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\</Value>
@@ -214,7 +181,7 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="Clock.ino">
+    <None Include="Interruptteszt.ino">
       <SubType>compile</SubType>
     </None>
   </ItemGroup>
@@ -222,12 +189,7 @@
     <Folder Include="Visual Micro\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="encoder.txt">
-      <SubType>compile</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Visual Micro\.Clock.vsarduino.h">
+    <Compile Include="Visual Micro\.Interruptteszt.vsarduino.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
