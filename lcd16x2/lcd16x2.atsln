@@ -1,9 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Atmel Studio Solution File, Format Version 11.00
-Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "lcdtest", "lcdtest.cppproj", "{07B459B4-8D76-4638-BC6D-A459BA2D616B}"
-EndProject
-Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "lcd16x2", "..\lcd16x2\lcd16x2.cppproj", "{9708E71C-92FA-49A4-8B2B-42380106C39A}"
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "lcd16x2", "lcd16x2.cppproj", "{9708E71C-92FA-49A4-8B2B-42380106C39A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +9,6 @@ Global
 		Release|AVR = Release|AVR
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{07B459B4-8D76-4638-BC6D-A459BA2D616B}.Debug|AVR.ActiveCfg = Debug|AVR
-		{07B459B4-8D76-4638-BC6D-A459BA2D616B}.Debug|AVR.Build.0 = Debug|AVR
-		{07B459B4-8D76-4638-BC6D-A459BA2D616B}.Release|AVR.ActiveCfg = Release|AVR
-		{07B459B4-8D76-4638-BC6D-A459BA2D616B}.Release|AVR.Build.0 = Release|AVR
 		{9708E71C-92FA-49A4-8B2B-42380106C39A}.Debug|AVR.ActiveCfg = Debug|AVR
 		{9708E71C-92FA-49A4-8B2B-42380106C39A}.Debug|AVR.Build.0 = Debug|AVR
 		{9708E71C-92FA-49A4-8B2B-42380106C39A}.Release|AVR.ActiveCfg = Release|AVR
