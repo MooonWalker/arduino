@@ -2,9 +2,9 @@
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectVersion>6.1</ProjectVersion>
+    <ProjectVersion>6.2</ProjectVersion>
     <ToolchainName>com.Atmel.AVRGCC8.CPP</ToolchainName>
-    <ProjectGuid>{07b459b4-8d76-4638-bc6d-a459ba2d616b}</ProjectGuid>
+    <ProjectGuid>{0bed91a2-d999-42ae-8994-6f5107ad0306}</ProjectGuid>
     <avrdevice>atmega328p</avrdevice>
     <avrdeviceseries>none</avrdeviceseries>
     <OutputType>Executable</OutputType>
@@ -12,9 +12,9 @@
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>Lessons</AssemblyName>
-    <Name>Lessons</Name>
-    <RootNamespace>Lessons</RootNamespace>
+    <AssemblyName>teszt</AssemblyName>
+    <Name>teszt</Name>
+    <RootNamespace>teszt</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
@@ -25,7 +25,7 @@
     <RamSnippetAddress>0x20000000</RamSnippetAddress>
     <CacheFlash>true</CacheFlash>
     <UncachedRange />
-    <BootSegment>2</BootSegment>
+    <BootSegment>0</BootSegment>
     <AsfFrameworkConfig>
       <framework-data>
         <options />
@@ -34,7 +34,7 @@
         <documentation help="" />
         <offline-documentation help="" />
         <dependencies>
-          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.3.0" />
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.6.0" />
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
@@ -63,6 +63,10 @@
           <ListValues>
             <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
             <Value>C:\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Arduino\libraries</Value>
+            <Value>C:\Arduino\hardware\arduino\libraries</Value>
+            <Value>C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\avr\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\</Value>
@@ -92,6 +96,10 @@
           <ListValues>
             <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
             <Value>C:\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Arduino\libraries</Value>
+            <Value>C:\Arduino\hardware\arduino\libraries</Value>
+            <Value>C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\avr\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\</Value>
@@ -110,11 +118,6 @@
         <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
       </AvrGccCpp>
     </ToolchainSettings>
-    <VisualMicroSettings>
-      <VisualMicroSettings xmlns="">
-        <arduino.upload.port>COM11</arduino.upload.port>
-      </VisualMicroSettings>
-    </VisualMicroSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <ToolchainSettings>
@@ -140,6 +143,10 @@
           <ListValues>
             <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
             <Value>C:\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Arduino\libraries</Value>
+            <Value>C:\Arduino\hardware\arduino\libraries</Value>
+            <Value>C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\avr\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\</Value>
@@ -169,6 +176,10 @@
           <ListValues>
             <Value>C:\Arduino\hardware\arduino\cores\arduino</Value>
             <Value>C:\Arduino\hardware\arduino\variants\standard</Value>
+            <Value>C:\Arduino\libraries</Value>
+            <Value>C:\Arduino\hardware\arduino\libraries</Value>
+            <Value>C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino\Micro Platforms\default\debuggers</Value>
+            <Value>c:\DATA\Dropbox\arduino\libraries</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\include\avr\</Value>
             <Value>c:\arduino\hardware\tools\avr\avr\</Value>
@@ -187,14 +198,9 @@
         <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
       </AvrGccCpp>
     </ToolchainSettings>
-    <VisualMicroSettings>
-      <VisualMicroSettings xmlns="">
-        <arduino.upload.port>COM11</arduino.upload.port>
-      </VisualMicroSettings>
-    </VisualMicroSettings>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="Lessons.ino">
+    <None Include="teszt.ino">
       <SubType>compile</SubType>
     </None>
   </ItemGroup>
@@ -202,7 +208,7 @@
     <Folder Include="Visual Micro\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Visual Micro\.Lessons.vsarduino.h">
+    <Compile Include="Visual Micro\.teszt.vsarduino.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
