@@ -1,5 +1,5 @@
  \
- C:\Users\i021059\AppData\Local\VMicro\Arduino\Builds\teszt\atmega328\HID.cpp.o:  \
+ C:\Users\i021059\AppData\Local\VMicro\Arduino\Builds\teszt\mega2560\HID.cpp.o:  \
  C:\Arduino\hardware\arduino\cores\arduino\HID.cpp \
   C:\Arduino\hardware\arduino\cores\arduino\/Platform.h \
   C:\Arduino\hardware\arduino\cores\arduino\/Arduino.h \
@@ -11,6 +11,6 @@
   C:\Arduino\hardware\arduino\cores\arduino\/Print.h \
   C:\Arduino\hardware\arduino\cores\arduino\/Printable.h \
   C:\Arduino\hardware\arduino\cores\arduino/new.h \
-  C:\Arduino\hardware\arduino\variants\standard/pins_arduino.h \
+  C:\Arduino\hardware\arduino\variants\mega/pins_arduino.h \
   C:\Arduino\hardware\arduino\cores\arduino\/USBAPI.h \
   C:\Arduino\hardware\arduino\cores\arduino\/USBDesc.h
