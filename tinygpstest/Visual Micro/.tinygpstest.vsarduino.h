@@ -18,10 +18,9 @@
 extern "C" void __cxa_pure_virtual() {;}
 
 //
-void clearLine();
-float conv_coords(float in_coords);
+static void smartDelay(unsigned long ms);
 //
 
 #include "C:\Arduino\hardware\arduino\variants\standard\pins_arduino.h" 
 #include "C:\Arduino\hardware\arduino\cores\arduino\arduino.h"
-#include "C:\DATA\Dropbox\arduino\LCD\LCD.ino"
+#include "C:\DATA\Dropbox\arduino\tinygpstest\tinygpstest.ino"
