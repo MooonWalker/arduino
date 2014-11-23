@@ -1,6 +1,6 @@
  \
- C:\Users\i021059\AppData\Local\VMicro\Arduino\Builds\teszt\mega2560\teszt.cpp.o:  \
- C:\Users\i021059\AppData\Local\VMicro\Arduino\Builds\teszt\mega2560\teszt.cpp \
+ C:\Users\i021059\AppData\Local\VMicro\Arduino\Builds\teszt\atmega328o\teszt.cpp.o:  \
+ C:\Users\i021059\AppData\Local\VMicro\Arduino\Builds\teszt\atmega328o\teszt.cpp \
   C:\Arduino\hardware\arduino\cores\arduino/arduino.h \
   C:\Arduino\hardware\arduino\cores\arduino/binary.h \
   C:\Arduino\hardware\arduino\cores\arduino/WCharacter.h \
@@ -10,4 +10,4 @@
   C:\Arduino\hardware\arduino\cores\arduino/Print.h \
   C:\Arduino\hardware\arduino\cores\arduino/Printable.h \
   C:\Arduino\hardware\arduino\cores\arduino/new.h \
-  C:\Arduino\hardware\arduino\variants\mega/pins_arduino.h
+  C:\Arduino\hardware\arduino\variants\standard/pins_arduino.h
