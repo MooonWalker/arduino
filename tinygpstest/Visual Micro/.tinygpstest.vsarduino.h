@@ -20,6 +20,9 @@ extern "C" void __cxa_pure_virtual() {;}
 //
 static void smartDelay(unsigned long ms);
 //
+void calculateBattery();
+static void printDateTime(TinyGPSDate &d, TinyGPSTime &t);
+static void printInt(unsigned long val, bool valid, int len);
 
 #include "C:\Arduino\hardware\arduino\variants\standard\pins_arduino.h" 
 #include "C:\Arduino\hardware\arduino\cores\arduino\arduino.h"
