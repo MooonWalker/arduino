@@ -6,11 +6,9 @@ TinyGPSPlus gps;
 SoftwareSerial ss(6, 7);
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 const int ledpin=13;
-int val=0;
 unsigned long last; 
 const int batteryPin = 0; 
-const double LONDON_LAT = 51.508131, LONDON_LON = -0.128002;
-
+double old_LAT = 51.508131, old_LON = -0.128002;
 
 void setup()
 {
@@ -23,6 +21,9 @@ void setup()
   pinMode(ledpin, OUTPUT);
   digitalWrite(ledpin,LOW);
   last=millis();
+  lcd.setCursor(0,1);
+  lcd.print(analogRead(batteryPin)*(5/1023.0)*2.96);
+  delay(500);
   lcd.clear(); 
 }
 
@@ -37,16 +38,13 @@ static void smartDelay(unsigned long ms)
 	} while (millis() - start < ms);
 }
 
-
-
 void loop()
 {	
 	if (millis() >= last+5000)
 	{
 	  calculateBattery();		
 	  last=millis();
-	}
-			
+	}			
 		smartDelay(1000);
 		Serial.print("Soft Serial device overflowed? ");
 		Serial.println(ss.overflow() ? "YES!" : "No");
@@ -56,11 +54,12 @@ void loop()
 		Serial.println(gps.location.isValid());
 
 		lcd.setCursor(0,0);
-		lcd.print(gps.time.hour()+1); // Hour (0-23) (u8)
-		lcd.print(":");
-		lcd.print(gps.time.minute()); // Minute (0-59) (u8)
-		lcd.print(":");
-		lcd.print(gps.time.second()); // Second (0-59) (u8)
+		lcdprintTime(gps.time);
+		//lcd.print(gps.time.hour()+1); // Hour (0-23) (u8)
+		//lcd.print(":");
+		//lcd.print(gps.time.minute()); // Minute (0-59) (u8)
+		//lcd.print(":");
+		//lcd.print(gps.time.second()); // Second (0-59) (u8)
 
 		lcd.setCursor(10,0);
 		lcd.print(gps.location.isValid());		
@@ -71,13 +70,9 @@ void loop()
 			Serial.print("LAT=");  Serial.println(gps.location.lat(), 6);
 			Serial.print("LONG="); Serial.println(gps.location.lng(), 6);
 
-			unsigned long distanceKmToLondon =
-			(unsigned long)TinyGPSPlus::distanceBetween(
-			gps.location.lat(),
-			gps.location.lng(),
-			LONDON_LAT,
-			LONDON_LON) / 1000;
-			printInt(distanceKmToLondon, gps.location.isValid(), 9); 
+			unsigned long distanceKmToOld =(unsigned long)TinyGPSPlus::distanceBetween(
+			gps.location.lat(),	gps.location.lng(), old_LAT, old_LON) / 1000;
+			printInt(distanceKmToOld, gps.location.isValid(), 9); 
 		}
 		else
 		{
@@ -87,20 +82,38 @@ void loop()
 
 void calculateBattery()
 {
-	val = analogRead(batteryPin);
-	float volts = val*(5/1023.0)*2.96; // calculate the ratio for 0 to 5 V
+	float volt=calculateVolts();
+	
 	lcd.setCursor(0,1);
-	if (volts<=7.0)
+	if (volt<10) // 2 cells LIPO
 	{
-		lcd.print("Batt LOW.: ");
-		lcd.print(volts);
-		lcd.print("V");
-	}
-	else
+	  if (volt<=7.0)
+	  {
+		  lcd.print("Batt LOW!: ");
+		  lcd.print(volt);
+		  lcd.print("V");
+	  }
+	  else
+	  {
+		  //lcd.print("Batt.: ");
+		  //lcd.print(volt);
+		  //lcd.print("V    ");
+	  }
+	} 
+	else  // 3 cells LIPO
 	{
-		lcd.print("Batt.: ");
-		lcd.print(volts);
-		lcd.print("V    ");
+	  if (volt<=10.5)
+	  {
+		  lcd.print("Batt LOW!: ");
+		  lcd.print(volt);
+		  lcd.print("V");
+	  }
+	  else
+	  {
+		  //lcd.print("Batt.: ");
+		  //lcd.print(volt);
+		  //lcd.print("V    ");
+	  }
 	}
 }
 
@@ -132,6 +145,20 @@ static void printDateTime(TinyGPSDate &d, TinyGPSTime &t)
 	smartDelay(0);
 }
 
+static void lcdprintTime(TinyGPSTime &t)
+{	
+	if (!t.isValid())
+	{
+		lcd.print(F("******** "));
+	}
+	else
+	{
+		char sz[32];
+		sprintf(sz, "%02d:%02d:%02d ", t.hour(), t.minute(), t.second());
+		lcd.print(sz);
+	}
+	smartDelay(0);
+}
 static void printInt(unsigned long val, bool valid, int len)
 {
 	char sz[32] = "*****************";
@@ -144,4 +171,11 @@ static void printInt(unsigned long val, bool valid, int len)
 	sz[len-1] = ' ';
 	Serial.print(sz);
 	smartDelay(0);
+}
+
+float calculateVolts()
+{
+	int val = analogRead(batteryPin);
+	float volts = val*(5/1023.0)*2.96; // calculate the ratio for 0 to 5 V
+	return volts;
 }
