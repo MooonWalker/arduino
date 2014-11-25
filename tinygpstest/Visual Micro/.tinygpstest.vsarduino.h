@@ -18,13 +18,13 @@
 extern "C" void __cxa_pure_virtual() {;}
 
 //
-static void smartDelay(unsigned long ms);
 //
 void calculateBattery();
 static void printDateTime(TinyGPSDate &d, TinyGPSTime &t);
-static void lcdprintTime(TinyGPSTime &t);
+static void lcdprintTime(TinyGPSTime &t, int zone);
 static void printInt(unsigned long val, bool valid, int len);
 float calculateVolts();
+static void smartDelay(unsigned long ms);
 
 #include "C:\Arduino\hardware\arduino\variants\standard\pins_arduino.h" 
 #include "C:\Arduino\hardware\arduino\cores\arduino\arduino.h"
