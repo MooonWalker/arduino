@@ -10,6 +10,10 @@ unsigned long last;
 const int batteryPin = 0; 
 double old_LAT = 51.508131, old_LON = -0.128002;
 
+enum STATE {NOFIX, BATT_LOW, FIX}; 
+STATE actualState = NOFIX;
+STATE prevState = NOFIX;
+
 void setup()
 {
   Serial.begin(28800);
@@ -27,52 +31,63 @@ void setup()
   lcd.clear(); 
 }
 
-// This custom version of delay() ensures that the gps object
-// is being "fed".
-
-
 void loop()
-{	
-	if (millis() >= last+5000)
-	{
-	  calculateBattery();		
-	  last=millis();
-	}			
-	smartDelay(1000); // feed the GPS ojjekt
-	Serial.print("Soft Serial device overflowed? ");
+{
+  if (millis() >= last+5000)
+  {
+	calculateBattery();
+	last=millis();
+  }	
 
+  smartDelay(1000); // feed the GPS ojjekt
+  if (gps.location.isValid())
+  {
+	  actualState=FIX;
+  }
+  else
+  {
+	  actualState=NOFIX;
+  }
+  switch(actualState)	//state machine
+  {
+    case NOFIX:
+	  digitalWrite(ledpin,LOW);
+	  lcd.setCursor(0,0);
+	  lcdprintTime(gps.time, 1);  // UTC +1
+	break;
+
+	case FIX:
+	{
+	  digitalWrite(ledpin,HIGH);
+	   Serial.print("LAT=");  Serial.println(gps.location.lat(), 6);
+	   Serial.print("LONG="); Serial.println(gps.location.lng(), 6);
+	  lcd.setCursor(10,0);
+	  lcd.print(gps.location.isValid());
+	  lcd.setCursor(0,1);
+	  lcd.print("S:");
+	  lcd.print(gps.satellites.value());
+	  lcd.print("H:");
+	  lcd.print(gps.hdop.value());
+	  unsigned long distanceKmToOld =(unsigned long)gps.distanceBetween(
+	  gps.location.lat(),	gps.location.lng(), old_LAT, old_LON) / 1000;
+	  printInt(distanceKmToOld, gps.location.isValid(), 9);
+	  }
+	break;
+
+	case BATT_LOW:
+	  lcd.clear();
+	  lcd.setCursor(0,1);
+	  lcd.print("Batt LOW!: ");
+	break;
+  } // end switch
+			
+	Serial.print("Soft Serial device overflowed? ");
 	Serial.println(ss.overflow() ? "YES!" : "No");
 	Serial.print("Sentences that failed checksum=");
 	Serial.println(gps.failedChecksum());		
 	Serial.print("Is valid? ");
 	Serial.println(gps.location.isValid());
-
-	lcd.setCursor(0,0);
-	lcdprintTime(gps.time, 1);  // UTC +1
-
-	if (gps.location.isValid())
-	{
-		lcd.setCursor(10,0);
-		lcd.print(gps.location.isValid());
-		lcd.setCursor(0,1);
-		lcd.print("S:");
-		lcd.print(gps.satellites.value());
-		lcd.print("H:");
-		lcd.print(gps.hdop.value());
-
-		digitalWrite(ledpin,HIGH);
-		Serial.print("LAT=");  Serial.println(gps.location.lat(), 6);
-		Serial.print("LONG="); Serial.println(gps.location.lng(), 6);
-
-		unsigned long distanceKmToOld =(unsigned long)gps.distanceBetween(
-		gps.location.lat(),	gps.location.lng(), old_LAT, old_LON) / 1000;
-		printInt(distanceKmToOld, gps.location.isValid(), 9); 
-	}
-	else
-	{
-		digitalWrite(ledpin,LOW);
-	}	
-}
+} // end Loop
 
 void calculateBattery()
 {
@@ -83,9 +98,9 @@ void calculateBattery()
 	{
 	  if (volt<=7.0)
 	  {
-		  lcd.print("Batt LOW!: ");
 		  lcd.print(volt);
 		  lcd.print("V");
+		  actualState = BATT_LOW;
 	  }
 	  else
 	  {
@@ -97,10 +112,10 @@ void calculateBattery()
 	else  // 3 cells LIPO
 	{
 	  if (volt<=10.5)
-	  {
-		  lcd.print("Batt LOW!: ");
+	  {  
 		  lcd.print(volt);
 		  lcd.print("V");
+		  actualState = BATT_LOW;
 	  }
 	  else
 	  {
@@ -173,6 +188,9 @@ float calculateVolts()
 	float volts = val*(5/1023.0)*2.96; // calculate the ratio for 0 to 5 V
 	return volts;
 }
+
+// This custom version of delay() ensures that the gps object
+// is being "fed".
 static void smartDelay(unsigned long ms)
 {
 	unsigned long start = millis();
