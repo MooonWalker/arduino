@@ -6,7 +6,7 @@ TinyGPSPlus gps;
 SoftwareSerial ss(6, 7);
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 const int ledpin=13;
-unsigned long last; 
+unsigned long battery_last, distance_last; // timers
 const int batteryPin = 0; 
 double old_LAT = 51.508131, old_LON = -0.128002;
 
@@ -24,7 +24,8 @@ void setup()
   lcd.print("GPS app starting...");
   pinMode(ledpin, OUTPUT);
   digitalWrite(ledpin,LOW);
-  last=millis();
+  battery_last=millis();
+  distance_last=millis();
   lcd.setCursor(0,1);
   lcd.print(analogRead(batteryPin)*(5/1023.0)*2.96);
   delay(500);
@@ -33,10 +34,10 @@ void setup()
 
 void loop()
 {
-  if (millis() >= last+5000)
+  if (millis() >= battery_last+5000)
   {
 	calculateBattery();
-	last=millis();
+	battery_last=millis();
   }	
 
   smartDelay(1000); // feed the GPS ojjekt
@@ -68,10 +69,19 @@ void loop()
 	  lcd.print(gps.satellites.value());
 	  lcd.print("H:");
 	  lcd.print(gps.hdop.value());
-	  unsigned long distanceKmToOld =(unsigned long)gps.distanceBetween(
-	  gps.location.lat(),	gps.location.lng(), old_LAT, old_LON) / 1000;
-	  printInt(distanceKmToOld, gps.location.isValid(), 9);
-	  }
+	 
+	  if (millis() >= distance_last+1000)
+	  {
+		unsigned long distanceKmToOld =(unsigned long)gps.distanceBetween(
+		gps.location.lat(),	gps.location.lng(), old_LAT, old_LON) / 1000;
+		printInt(distanceKmToOld, gps.location.isValid(), 9);  
+		lcd.setCursor(0,1);
+		lcd.print(distanceKmToOld);
+		old_LAT=gps.location.lat();
+		old_LON=gps.location.lng();
+		distance_last=millis(); // timer reset
+	  }  
+	}// end case FIX
 	break;
 
 	case BATT_LOW:
@@ -171,8 +181,7 @@ static void lcdprintTime(TinyGPSTime &t, int zone)
 static void printInt(unsigned long val, bool valid, int len)
 {
 	char sz[32] = "*****************";
-	if (valid)
-	sprintf(sz, "%ld", val);
+	if (valid) sprintf(sz, "%ld", val);
 	sz[len] = 0;
 	for (int i=strlen(sz); i<len; ++i)
 	sz[i] = ' ';
