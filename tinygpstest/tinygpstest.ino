@@ -2,13 +2,16 @@
 #include "TinyGPS++.h"
 #include "LiquidCrystal.h"
 
+
 TinyGPSPlus gps;
 SoftwareSerial ss(6, 7);
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 const int ledpin=13;
 unsigned long battery_last, distance_last; // timers
 const int batteryPin = 0; 
-double old_LAT = 51.508131, old_LON = -0.128002;
+double old_LAT = 51.508131, old_LON = 19.128618;
+int totalDistance=0;
+char once=0;
 
 enum STATE {NOFIX, BATT_LOW, FIX}; 
 STATE actualState = NOFIX;
@@ -43,7 +46,15 @@ void loop()
   smartDelay(1000); // feed the GPS ojjekt
   if (gps.location.isValid())
   {
+	
+	if (gps.location.age()>1500)
+	{
+		actualState=NOFIX;
+	}
+	else
+	{
 	  actualState=FIX;
+	}
   }
   else
   {
@@ -53,6 +64,7 @@ void loop()
   {
     case NOFIX:
 	  digitalWrite(ledpin,LOW);
+	  lcd.clear();
 	  lcd.setCursor(0,0);
 	  lcdprintTime(gps.time, 1);  // UTC +1
 	break;
@@ -62,21 +74,32 @@ void loop()
 	  digitalWrite(ledpin,HIGH);
 	   Serial.print("LAT=");  Serial.println(gps.location.lat(), 6);
 	   Serial.print("LONG="); Serial.println(gps.location.lng(), 6);
-	  lcd.setCursor(10,0);
-	  lcd.print(gps.location.isValid());
+	  
+	  if (!once)
+	  {
+		old_LAT=gps.location.lat();
+		old_LON=gps.location.lng();
+		once=1;
+	  }
+	  
 	  lcd.setCursor(0,1);
-	  lcd.print("S:");
+	  lcd.print("Sats:");
 	  lcd.print(gps.satellites.value());
-	  lcd.print("H:");
+	  lcd.print("HDOP:");
 	  lcd.print(gps.hdop.value());
 	 
 	  if (millis() >= distance_last+1000)
 	  {
-		unsigned long distanceKmToOld =(unsigned long)gps.distanceBetween(
-		gps.location.lat(),	gps.location.lng(), old_LAT, old_LON) / 1000;
+		unsigned long distanceKmToOld =0; // meters
+		distanceKmToOld  =(unsigned long)gps.distanceBetween(
+		gps.location.lat(),	gps.location.lng(), old_LAT, old_LON);
 		printInt(distanceKmToOld, gps.location.isValid(), 9);  
-		lcd.setCursor(0,1);
-		lcd.print(distanceKmToOld);
+		totalDistance = totalDistance+distanceKmToOld;
+		lcd.setCursor(0,0);
+		lcd.print("        ");
+		lcd.setCursor(0,0);
+		lcd.print(totalDistance);
+		lcd.print("m");
 		old_LAT=gps.location.lat();
 		old_LON=gps.location.lng();
 		distance_last=millis(); // timer reset
