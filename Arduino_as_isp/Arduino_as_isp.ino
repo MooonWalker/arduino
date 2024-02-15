@@ -5,7 +5,7 @@
 // 12: MISO
 // 13: SCK
 
-// Put an LED (with resistor) on the following pins:
+// Put an LED (with resistor) on thhhhe following pins:
 //  8: Error - Lights up if something goes wrong (use red if that makes sense)
 // A0: Programming - In communication with the slave
 //  6: Heartbeat - shows the programmer is running (removed, see notes below)
