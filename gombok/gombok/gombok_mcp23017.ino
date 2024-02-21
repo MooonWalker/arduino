@@ -1,6 +1,6 @@
 #include <Wire.h>
 
-#define eport 0x20  // MCP23017 is on I2C port 0x20
+#define eport 0x20  // MCP23017 is on I2C port 0x20 B0100000 7 bit 0100A1A2A0
 #define INTCAPA 0x08
 
 byte inputs=0;             // Variable to store the Byte in
