@@ -18,13 +18,17 @@ void setup()
   expanderWrite(0x0B, B10000000); //IOCON, BANK1  
                                   // valid command only if BANK = 0, which is true upon reset
                                   // set BANK = 1 if it had been 0 (nothing happens if BANK = 1 already)
-  //expanderWrite(0x06, 0xff); //GPPUA                               
-  expanderWrite(0x16, 0x7f); //GPPUB
+  //expanderWrite(0x06, 0xff); //GPPUA       
+  expanderWrite(0x10, 2); //IODIRB
+  expanderWrite(0x16, 0x2); //GPPUB pull-up on bits 7-1
   //expanderWrite(0x01, 0xff); //IPOLA                               
-  expanderWrite(0x11, 0xff); //IPOLB
+  expanderWrite(0x11, 0x2); //IPOLB
   //expanderWrite(0x02, 0xff); //GPINTENA
-  expanderWrite(0x12, 0xff); //GPINTENB
-  
+  expanderWrite(0x12, 0x2); //GPINTENB
+  expanderWrite(0x13, 0x0); //DEFVALB
+  expanderWrite(0x14, 0x2); //INTCONB
+  expanderWrite(0x19, 1);   //GPIOB high
+
   keypressed=false;
   
   // read from interrupt capture ports to clear them
@@ -37,17 +41,10 @@ void setup()
 
 void loop()
 {
-//  Wire.beginTransmission(B0100000); // Connect to chip
-//  Wire.write(0x09);             // GPIOA
-//  Wire.endTransmission();       // Close connection
-//  Wire.requestFrom(B0100000, 1);    // Request one Byte
-//  inputs=Wire.read();  
-  
    
     if(keypressed)
     {
-        handleKeypress();    
-        
+        handleKeypress();         
     }
   
   // turn LED off after 500 ms 
@@ -55,12 +52,13 @@ void loop()
    {
      Serial.print("Time is up");
      Serial.println();
+     expanderWrite(0x19, 0);   //GPIOB LOW
       time = 0;
    }  // end if time up
    
 }   //-----------------------Endloop
 
-void keypress()
+void keypress() //interrupt handler
 {
     keypressed = true;
 }
@@ -88,16 +86,23 @@ unsigned int expanderRead(const byte reg)
 void handleKeypress()
 {
   unsigned int keyValue = 0;
-  delay(100); // de-bounce before we re-enable interrupts
+  expanderWrite(0x19, 1);   //GPIOB High
+  delay(450); // de-bounce before we re-enable interrupts
   keypressed = false;
   
+  unsigned int tmp = expanderRead(0x17);
   keyValue= expanderRead(INTCAPB);
+  
   if(keyValue==192) keyValue= 5;
   if(keyValue==8) keyValue= 4;
   if(keyValue==32) keyValue= 3;
   Serial.print("Key value: ");
   Serial.print(keyValue);
   Serial.println();
+  Serial.print("INTFB value: ");
+  Serial.print(tmp);
+  Serial.println();
   time = millis();  // remember when
-  
+  // read from interrupt capture ports to clear them
+  expanderRead(INTCAPB); //INTCAPA   
 }
